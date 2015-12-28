@@ -588,13 +588,13 @@ _Feature implementations that are most similar to TensorFlow are listed after th
 ```
 
 #### Figure 2: Corresponding computation graph for Figure 1
-<img src="img/figure2.svg" id="figure2" style="max-height: 300px"></img>
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure2.svg" id="figure2" style="max-height: 300px"></img>
 
 #### Figure 3: Single machine (left) and distributed system (right) structure
-<img src="img/figure3.svg" id="figure3" style="max-height: 300px"></img>
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure3.svg" id="figure3" style="max-height: 300px"></img>
 
 #### Figure 4: Before and after insertion of Send/Recieve nodes
-<img src="img/figure4.svg" id="figure4" style="max-height: 300px"></img>
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure4.svg" id="figure4" style="max-height: 300px"></img>
 
 #### Figure 5: Gradients computed for graph in figure 2
-<img src="img/figure5.svg" id="figure5" style="max-height: 300px"></img>
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure5.svg" id="figure5" style="max-height: 300px"></img>
