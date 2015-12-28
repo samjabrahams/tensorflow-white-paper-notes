@@ -14,6 +14,7 @@ Reading the white paper has improved my comfort with the APIs dramatically, and 
 ### To-do list
 
 * SVG versions of figures 6-9
+* Create and utilize anchor tags throughout notes for self-navigating
 
 ## Contributions
 

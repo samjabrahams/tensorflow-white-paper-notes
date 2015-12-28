@@ -1,5 +1,17 @@
 # TensorFlow White Paper Notes
 
+## Features
+
+* Notes broken down section by section, as well as subsection by subsection
+* Relevant links to documentation, resources, and references throughout
+* SVG versions of figures/graphs
+* So many bullet points!
+
+### To-do list
+
+* SVG versions of figures 6-9
+* Create and utilize anchor tags throughout notes for self-navigating
+
 _[White Paper available at this link](http://download.tensorflow.org/paper/whitepaper2015.pdf)_
 
 - - -
