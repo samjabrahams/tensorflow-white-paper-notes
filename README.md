@@ -9,7 +9,7 @@
 
 ### To-do list
 
-* SVG versions of figures 6-9
+* SVG versions of figures 8-9
 * Create and utilize anchor tags throughout notes for self-navigating
 
 _[White Paper available at this link](http://download.tensorflow.org/paper/whitepaper2015.pdf)_
