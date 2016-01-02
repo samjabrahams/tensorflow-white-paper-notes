@@ -610,3 +610,9 @@ _Feature implementations that are most similar to TensorFlow are listed after th
 
 #### Figure 5: Gradients computed for graph in figure 2
 <img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure5.svg" id="figure5" style="max-height: 300px"></img>
+
+#### Figure 6: Before and after graph transformation for partial execution
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure6.svg" id="figure6" style="max-height: 300px"></img>
+
+#### Figure 7: Synchronous and asynchronous data parallel training
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure7.svg" id="figure7" style="max-height: 300px"></img>
