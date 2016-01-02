@@ -341,7 +341,8 @@ _This section describes certain performance/resource usage optimizations used in
 * For example, a 32-bit floating point number may be converted into a (for all intents and purposes) 16-bit floating point number before being sent to another device, where it is converted into a lossy version of the original 32-bit number
 	* The 16-bit floating number is really just a 32-bit floating point with 16-bits less precision after the decimal
 	* The conversion back to 32-bit floating point just fills in zeros to replace the lost precision after the decimal
-
+		* 'Filling in with zeros' is used as the 16-bit -> 32-bit conversion menthod because it is faster than using stochastic rounding, even though the latter is more mathematically correct
+		
 - - -
 
 ## 6 Status and Experience
