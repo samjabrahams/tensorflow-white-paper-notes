@@ -253,6 +253,8 @@ _Aside: I'm not sure if this functionality is available in the open source imple
 
 ## 4.4 Control Flow
 
+_These features are still being developed, and the API is not yet public or stable. Track the [open issue on GitHub](https://github.com/tensorflow/tensorflow/issues/208) to stay up-to-date!_
+
 * TensorFlow incorporates a few primitive control flow operators which allow for the skipping of subgraph execution and the expression of iteration. Using these primitive operators, higher-level constructs such as `if` and `while` statements can be compiled into TensorFlow graphs
 * Each iteration in a loop is identified with a unique tag, and the present value of that execution state is represented by a frame
 * Inputs can enter an iteration whenever they are available
