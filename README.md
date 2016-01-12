@@ -405,7 +405,7 @@ _The techniques presented here assume that the model is using stochastic gradien
 
 ## 8 Performance
 
-_Stay tuned for future versions of the TensorFlow white paper, which will include performance evlauations for single machine and distributed implementations of TensorFlow_
+_Stay tuned for future versions of the TensorFlow white paper, which will include performance evaluations for single machine and distributed implementations of TensorFlow_
 
 - - -
 
