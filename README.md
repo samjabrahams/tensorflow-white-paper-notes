@@ -9,7 +9,6 @@
 
 ### To-do list
 
-* SVG versions of figures 8-9
 * Create and utilize anchor tags throughout notes for self-navigating
 
 _[White Paper available at this link](http://download.tensorflow.org/paper/whitepaper2015.pdf)_
@@ -619,3 +618,9 @@ _Feature implementations that are most similar to TensorFlow are listed after th
 
 #### Figure 7: Synchronous and asynchronous data parallel training
 <img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure7.svg" id="figure7" style="max-height: 300px"></img>
+
+#### Figure 8: Model parallel training
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure8.svg" id="figure8" style="max-height: 300px"></img>
+
+#### Figure 9: Concurrent steps
+<img src="http://cdn.rawgit.com/samjabrahams/tensorflow-white-pages-notes/master/img/figure9.svg" id="figure9" style="max-height: 300px"></img>
