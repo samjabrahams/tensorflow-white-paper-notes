@@ -101,7 +101,8 @@ _See the official [How-To](https://www.tensorflow.org/versions/master/how_tos/va
 	* The client uses a Session interface to communicate with the master
 	* The master schedules and coordinates worker processes and relays results back to the client
 	* Worker processes are responsible for maintaining access to devices such as CPU/GPU cores and execute graph nodes on their respective devices
-* There are both local and distributed implementations of TensorFlow, but only the local version has been open-sourced as of writing
+* There are both local and distributed implementations of TensorFlow, ~~but only the local version has been open-sourced as of writing~~
+	* **Update as of February 2016:** The initial open-source implementation of the TensorFlow distributed runtime is [available on the TensorFlow GitHub repository.](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/distributed_runtime) However, using it at this time requires building TensorFlow from source, and full API documentation is not yet available.
 
 ### Devices
 
