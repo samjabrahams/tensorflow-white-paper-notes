@@ -171,7 +171,7 @@ _**NOTE:** To reiterate- in this context, "single device" means using a single C
 * Section 4.3 will describe some extensions to help guide the placement algorithm
 * Improving the placement algorithm's development is an ongoing process as of writing
 
-_**NOTE:** At the moment the cost model is only used at the scheduling algorithm and the placement is done by a simple_placer-class which only considers implicit colocation constraints (based on node type) and placement requirements provided by the user_
+_**NOTE:** At the moment, node placement is done by a [simple_placer class](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/common_runtime/simple_placer.h) which only considers explicit placement requirements provided by the user and implicit colocation constraints based on node type ([see documentation comments for details](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/common_runtime/simple_placer.h#L32-L41)_
 
 ### Cross-Device Communication
 
