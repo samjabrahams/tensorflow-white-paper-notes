@@ -171,6 +171,8 @@ _**NOTE:** To reiterate- in this context, "single device" means using a single C
 * Section 4.3 will describe some extensions to help guide the placement algorithm
 * Improving the placement algorithm's development is an ongoing process as of writing
 
+_**NOTE:** At the moment, node placement is done by a [simple_placer class](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/common_runtime/simple_placer.h) which only considers explicit placement requirements provided by the user and implicit colocation constraints based on node type ([see documentation comments for details](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/common_runtime/simple_placer.h#L32-L41)_
+
 ### Cross-Device Communication
 
 * After the nodes have been placed onto their respective devices, the execution graph is split into subgraphs- one per device
@@ -250,6 +252,7 @@ _The following subsections describe advanced features and extensions of the prog
 	* Final selection of devices is determined using similar heuristics as described in Section 3.2, ensuring fast execution while taking device restrictions, such as memory, into account
 
 _Aside: I'm not sure if this functionality is available in the open source implementation of TensorFlow yet. As of now I can only find information regarding placing nodes on **specific** devices. [Read more about manual device placement here](https://tensorflow.googlesource.com/tensorflow/+/master/tensorflow/g3doc/how_tos/using_gpu/index.md#Manual-device-placement). Let me know if you can find the documentation for this feature!_
+It is possible to provide partial constraints (https://www.tensorflow.org/versions/r0.11/how_tos/variables/index.html#device-placement) e.g. with tf.device("/job:ps/task:7") or with tf.device("/gpu:0").
 
 ## 4.4 Control Flow
 
