@@ -43,14 +43,14 @@ _[White Paper available at this link](http://download.tensorflow.org/paper/white
 
 ## 2 Programming Model and Basic Concepts
 
-* TensorFlow computations are represented by [_directed graphs_](https://www.tensorflow.org/versions/master/api_docs/python/framework.html#Graph), which are composed of _nodes_
+* TensorFlow computations are represented by [_directed graphs_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Graph), which are composed of _nodes_
 * Some nodes are able to maintain and update a persistent state and/or have some sort of branching and looping structures
 	* This branching/looping is modeled similarly to [MSR's Naiad](http://research.microsoft.com:8082/pubs/201100/naiad_sosp2013.pdf)
 * Graphs are constructed using supported front-end languages (C++/Python as of writing)
-* A Node has zero or more inputs/outputs, and it represents an [_operation_](https://www.tensorflow.org/versions/master/api_docs/python/framework.html#Operation)
-* Values of 'normal' edges (the connection between one node's output to another node's input) are [_tensors_](https://www.tensorflow.org/versions/master/api_docs/python/framework.html#Tensor), n-dimensional arrays.
+* A Node has zero or more inputs/outputs, and it represents an [_operation_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Operation)
+* Values of 'normal' edges (the connection between one node's output to another node's input) are [_tensors_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Tensor), n-dimensional arrays.
 	* The type of each element in the tensor is inferred while the graph is being constructed, prior to execution
-* There are 'special' edges, called [_control dependencies_](https://www.tensorflow.org/versions/master/api_docs/python/framework.html#Graph.control_dependencies): no model data is transferred on these edges, rather they indicate that the source node must finish execution before the destination node begins execution
+* There are 'special' edges, called [_control dependencies_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Graph#control_dependencies): no model data is transferred on these edges, rather they indicate that the source node must finish execution before the destination node begins execution
 	* Can be thought of as a baton in a relay race. Attaching a control dependency means that the next node can't begin running until the previous node 'hands off' the baton.
 	* Used by client to enforce happens-before relations
 	* Used in reference implementation to manage memory usage
@@ -59,7 +59,7 @@ _[White Paper available at this link](http://download.tensorflow.org/paper/white
 
 ### Operations and Kernels
 
-* Operations have names and represent an abstract computation, such as ["matrix multiply"](https://www.tensorflow.org/versions/master/api_docs/python/math_ops.html#matmul) or ["add"](https://www.tensorflow.org/versions/master/api_docs/python/math_ops.html#add)
+* Operations have names and represent an abstract computation, such as ["matrix multiply"](https://www.tensorflow.org/versions/master/api_docs/python/tf/matmul) or ["add"](https://www.tensorflow.org/versions/master/api_docs/python/tf/add)
 * Operations can optionally require _attributes_. Attributes must be explicitly provided or be possible to infer prior to running the graph
 	* A common use of attributes is to declare which data type the operation is being performed with (i.e. float tensors vs. int32 tensors)
 * A _kernel_ is an implementation of an operation designed for specific types of devices, such as CPU or GPU
@@ -80,7 +80,7 @@ _Check out [this directory in the TensorFlow repository](https://github.com/tens
 
 ### Sessions
 
-* Clients interact with TensorFlow by creating a [_Session_](https://www.tensorflow.org/versions/master/api_docs/python/client.html#Session), which supports two main functions: _Extend_ and [_Run_](https://www.tensorflow.org/versions/master/api_docs/python/client.html#Session.run)
+* Clients interact with TensorFlow by creating a [_Session_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Session), which supports two main functions: _Extend_ and [_Run_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Session#run)
 	* The Extend method adds additional nodes and edges to the existing dataflow model
 		* _Note: Extend is called automatically by TensorFlow, not directly by the client_
 	* Run takes as argument a set of named nodes to be computed as well as an optional set of tensors to be used in place of certain node outputs. It then uses the graph to figure all nodes required to compute the requested outputs, and performs them in a order that respects their dependencies.
@@ -88,7 +88,7 @@ _Check out [this directory in the TensorFlow repository](https://github.com/tens
 
 ### Variables
 
-* A [_Variable_](https://www.tensorflow.org/versions/master/api_docs/python/state_ops.html#Variable) is a handle to a persistent and mutable tensor which survives each execution of a graph
+* A [_Variable_](https://www.tensorflow.org/versions/master/api_docs/python/tf/Variable) is a handle to a persistent and mutable tensor which survives each execution of a graph
 * For ML tasks, learned parameters are usually held in TensorFlow Variables
 
 _See the official [How-To](https://www.tensorflow.org/versions/master/how_tos/variables/index.html) to learn more about TensorFlow Variables_
@@ -117,7 +117,7 @@ _See the official [How-To](https://www.tensorflow.org/versions/master/how_tos/va
 
 * Typed, multi-dimensional array
 * Memory management of tensors is handled automatically
-* Available types (from the [TensorFlow documentation](https://www.tensorflow.org/versions/master/resources/dims_types.html#data-types)):  
+* Available types (from the [TensorFlow documentation](https://www.tensorflow.org/versions/master/programmers_guide/dims_types#data_types)):  
 
 Data type | Python type | Description
 --- | --- | ---
@@ -230,7 +230,7 @@ _The following subsections describe advanced features and extensions of the prog
 * TensorFlow has built-in functionality to run smaller chunks of a defined execution graph, as well as the ability to insert pre-defined data as a replacement for any edge in the graph
 * Each node in the graph is given a name upon instantiation, and each output of a node is referred to by number starting from zero
 	* e.g. "bar:0" is the first output of node "bar"
-* The Session's [run method](https://www.tensorflow.org/versions/master/api_docs/python/client.html#Session.run) takes two arguments, `fetches` and `feed_dict`, which define the subgraph to be executed:
+* The Session's [run method](https://www.tensorflow.org/versions/master/api_docs/python/tf/Session#run) takes two arguments, `fetches` and `feed_dict`, which define the subgraph to be executed:
 	* `fetches` is a list of desired operation nodes and/or output tensors to be executed. If outputs are requested, the Run function will return the calculated tensors to the client (assuming the Run function is successful)
 	* `feed_dict` is a dictionary of optional inputs, which map named node outputs (_`name:port`_) to defined tensor values. This allows a user to effectively define the 'start' of a subgraph. Additionally, `feed_dict` is used to define data in Placeholder objects
 * The execution graph is then transformed based on the values fed to `fetches` and `feed_dict`
@@ -267,26 +267,26 @@ It is possible to provide partial constraints (https://www.tensorflow.org/versio
 
 ## 4.5 Input Operations
 
-* In addition to using the `feed_dict` parameter in the [`Session.run`](https://www.tensorflow.org/versions/master/api_docs/python/client.html#Session.run) method to manually feed in input data, TensorFlow supports reading tensors in directly from files
+* In addition to using the `feed_dict` parameter in the [`Session.run`](https://www.tensorflow.org/versions/master/api_docs/python/tf/Session#run) method to manually feed in input data, TensorFlow supports reading tensors in directly from files
 * Using this feature can reduce data transfer overhead when using TensorFlow on a distributed implementation (specifically when the client is on a different machine from the worker process):
 	* Using `feed_dict` will cause data to first be sent from the storage system to the client, and then from client to the worker process
 	* Reading from the file will cause data to be sent directly from the storage system to the worker process
 * Data can be read in as individual data examples or in batches of examples
 * TensorFlow classes for reading data:
-	* Text/CSV: [`tf.TextLineReader`](https://www.tensorflow.org/versions/master/api_docs/python/io_ops.html#TextLineReader)
-		* [Basics of CSV parsing in TensorFlow](https://www.tensorflow.org/versions/master/how_tos/reading_data/index.html#csv-files)
-	* Fixed Length records: [`tf.FixedLengthRecordReader`](https://www.tensorflow.org/versions/master/api_docs/python/io_ops.html#FixedLengthRecordReader)
-		* [Basics of fixed length record parsing in TensorFlow](https://www.tensorflow.org/versions/master/how_tos/reading_data/index.html#fixed-length-records)
+	* Text/CSV: [`tf.TextLineReader`](https://www.tensorflow.org/versions/master/api_docs/python/tf/TextLineReader)
+		* [Basics of CSV parsing in TensorFlow](https://www.tensorflow.org/versions/master/programmers_guide/reading_data#csv_files)
+	* Fixed Length records: [`tf.FixedLengthRecordReader`](https://www.tensorflow.org/versions/master/api_docs/python/tf/FixedLengthRecordReader)
+		* [Basics of fixed length record parsing in TensorFlow](https://www.tensorflow.org/versions/master/programmers_guide/reading_data#fixed_length_records)
 	* TensorFlow data format: [`tf.TFRecordReader`](https://www.tensorflow.org/versions/master/api_docs/python/io_ops.html#TFRecordReader)
-		* [Basics of TensorFlow data format handling](https://www.tensorflow.org/versions/master/how_tos/reading_data/index.html#standard-tensorflow-format)
+		* [Basics of TensorFlow data format handling](https://www.tensorflow.org/versions/master/programmers_guide/reading_data#standard_tensorflow_format)
 
 ## 4.6 Queues
 
-* TensorFlow includes [Queues](https://www.tensorflow.org/versions/master/api_docs/python/io_ops.html#queues), which allow for the enqueuing and dequeuing of tensor objects. This enables asynchronous graph execution and the handing off of data between concurrent nodes
+* TensorFlow includes [Queues](https://www.tensorflow.org/versions/master/api_guides/python/io_ops#Queues), which allow for the enqueuing and dequeuing of tensor objects. This enables asynchronous graph execution and the handing off of data between concurrent nodes
 	* Enqueue operations can block until there is space available in the queue
 	* Dequeue operations can block until a minimum number of elements are placed in the queue
-* [`FIFOQueue`](https://www.tensorflow.org/versions/master/api_docs/python/io_ops.html#FIFOQueue) is a standard 'first-in, first-out' queue
-* [`RandomShuffleQueue`](https://www.tensorflow.org/versions/master/api_docs/python/io_ops.html#RandomShuffleQueue) is a queue that randomly shuffles its elements periodically, which can be useful for machine learning algorithms that want to randomize training data
+* [`FIFOQueue`](https://www.tensorflow.org/versions/master/api_docs/python/tf/FIFOQueue) is a standard 'first-in, first-out' queue
+* [`RandomShuffleQueue`](https://www.tensorflow.org/versions/master/api_docs/python/tf/RandomShuffleQueue) is a queue that randomly shuffles its elements periodically, which can be useful for machine learning algorithms that want to randomize training data
 * An example use of queues is to allow input data to be prefetched from the storage system while previous data is still being processed
 
 ## 4.7 Containers
