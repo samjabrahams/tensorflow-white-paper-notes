@@ -117,7 +117,7 @@ _See the official [How-To](https://www.tensorflow.org/versions/master/how_tos/va
 
 * Typed, multi-dimensional array
 * Memory management of tensors is handled automatically
-* Available types (from the [TensorFlow documentation](https://www.tensorflow.org/versions/master/programmers_guide/dims_types#data_types)):  
+* Available types (from the [TensorFlow documentation](https://www.tensorflow.org/versions/r0.12/resources/dims_types)):  
 
 Data type | Python type | Description
 --- | --- | ---
